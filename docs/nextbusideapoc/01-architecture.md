@@ -168,70 +168,81 @@ Client displays SavedIdeasSection (grid layout)
 
 ### 4.1 Monorepo with pnpm Workspaces
 
-**Why**: 
-- Share types across packages without duplication
-- Independent builds and testing
-- Single tsconfig base that can be extended
+**Why**:
+
+* Share types across packages without duplication
+* Independent builds and testing
+* Single tsconfig base that can be extended
 
 **Trade-offs**:
-- More complex setup than single-package
-- Better for teams and scaling
+
+* More complex setup than single-package
+* Better for teams and scaling
 
 ### 4.2 Packages vs Apps
 
 **Core Package** (@next-business-idea/core)
-- Pure TypeScript, no dependencies on web frameworks
-- Contains all domain logic and business rules
-- Can be used by CLI, backend, mobile, etc.
+
+* Pure TypeScript, no dependencies on web frameworks
+* Contains all domain logic and business rules
+* Can be used by CLI, backend, mobile, etc.
 
 **Integrations Package** (@next-business-idea/integrations)
-- Defines interfaces for all external services
-- Provides mock implementations
-- Can have real implementations plugged in
+
+* Defines interfaces for all external services
+* Provides mock implementations
+* Can have real implementations plugged in
 
 **Web App** (apps/web)
-- Only orchestrates components and API routes
-- Consumes core + integrations
-- Thin layer, no business logic
+
+* Only orchestrates components and API routes
+* Consumes core + integrations
+* Thin layer, no business logic
 
 ### 4.3 Deterministic Scoring
 
 **Why**:
-- Makes tests stable and predictable
-- No need for seeding ML models
-- Perfect for POC to verify logic
+
+* Makes tests stable and predictable
+* No need for seeding ML models
+* Perfect for POC to verify logic
 
 **Rules**:
-- Demand: tag matching + why-now signals + location bonus
-- Competition: category saturation assumptions (hardcoded map)
-- Feasibility: budget alignment + hours available + complexity
-- Profitability: startup cost + category margins
+
+* Demand: tag matching + why-now signals + location bonus
+* Competition: category saturation assumptions (hardcoded map)
+* Feasibility: budget alignment + hours available + complexity
+* Profitability: startup cost + category margins
 
 **See docs/04-testing.md for examples**
 
 ### 4.4 Idea Catalog (Not LLM)
 
 **Why**:
-- No API costs or latency
-- Deterministic results for testing
-- Easy to iterate on ideas
+
+* No API costs or latency
+* Deterministic results for testing
+* Easy to iterate on ideas
 
 **How to Replace with LLM** (docs/01-architecture.md):
-- Replace `MockIdeaGenerator` with `LLMIdeaGenerator`
-- Use OpenAI API, Claude, or local LLM
-- See integrations/src/interfaces.ts for contract
+
+* Replace `MockIdeaGenerator` with `LLMIdeaGenerator`
+* Use OpenAI API, Claude, or local LLM
+* See integrations/src/interfaces.ts for contract
 
 ### 4.5 Mock Repository (Not DB)
 
 **Why**:
-- No database setup needed
-- Works out of the box
-- Clear interface for real DB later
+
+* No database setup needed
+* Works out of the box
+* Clear interface for real DB later
 
 **How to Upgrade** (docs/05-deployment.md):
-- Replace `MockIdeaRepository` with `PrismaRepository`
-- Initialize SQLite locally, Postgres in production
-- See integrations/src/interfaces.ts for contract
+
+* Replace `MockIdeaRepository` with `PrismaRepository`
+* Initialize SQLite locally, Postgres in production
+* See integrations/src/interfaces.ts for contract
 
 ## 5. Technology Choices
 
@@ -430,24 +441,26 @@ export { getIdeaGenerator, getScoringService, getIdeaRepository };
 
 ## 9. Performance Targets
 
-- Idea generation: &lt;2s (200ms mock + 100ms per idea)
-- Scoring: &lt;100ms per idea (deterministic)
-- Saved ideas retrieval: &lt;500ms
-- Page load: &lt;1s (Next.js optimized)
-- Core bundle: &lt;50KB
+* Idea generation: \&lt;2s (200ms mock + 100ms per idea)
+* Scoring: \&lt;100ms per idea (deterministic)
+* Saved ideas retrieval: \&lt;500ms
+* Page load: \&lt;1s (Next.js optimized)
+* Core bundle: \&lt;50KB
 
 ## 10. Monitoring & Observability
 
 Future additions:
-- Sentry for error tracking
-- Vercel Analytics for performance
-- CloudWatch for production logs
-- Custom dashboard for idea trends
 
----
+* Sentry for error tracking
+* Vercel Analytics for performance
+* CloudWatch for production logs
+* Custom dashboard for idea trends
+
+***
 
 See other documentation files:
-- [API Specification](02-api-spec.md)
-- [Data Model](03-data-model.md)
-- [Testing Strategy](04-testing.md)
-- [Deployment Guide](05-deployment.md)
+
+* [API Specification](02-api-spec.md)
+* [Data Model](03-data-model.md)
+* [Testing Strategy](04-testing.md)
+* [Deployment Guide](05-deployment.md)

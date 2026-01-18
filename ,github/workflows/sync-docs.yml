@@ -49,51 +49,17 @@ jobs:
           # Clean up source directories
           rm -rf _source_mynexthomepoc _source_nextbusideapoc
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run MDX compatibility fixes
-        run: |
-          echo "Running MDX compatibility fixes..."
-          
-          if [ -f scripts/mdx-compile-fix.js ]; then
-            echo "→ Running mdx-compile-fix.js"
-            node scripts/mdx-compile-fix.js --apply --no-backup
-          else
-            echo "⚠ scripts/mdx-compile-fix.js not found; skipping"
-          fi
-
-      - name: Validate MDX build
-        run: |
-          echo "Validating Docusaurus build..."
-          npm run build
-          
-          if [ $? -eq 0 ]; then
-            echo "✓ Build validation successful"
-          else
-            echo "✗ Build validation failed - MDX compilation errors detected"
-            exit 1
-          fi
-
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Stage all changes (synced docs + script fixes)
-          git add -A docs/
-          
           # Check if there are any changes in the docs directories
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Sync docs from source repos and apply MDX fixes"
+          if [ -n "$(git status --porcelain docs/)" ]; then
+            git add docs/
+            git commit -m "Sync docs from source repos"
             git push
-            echo "✓ Changes committed and pushed."
+            echo "Changes committed and pushed."
+          else
+            echo "No changes to commit."
           fi

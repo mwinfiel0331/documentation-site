@@ -6,12 +6,12 @@ Generate personalized business ideas and rank them using a deterministic scoring
 
 **Next Business Idea** is a production-ready proof-of-concept (POC) that demonstrates:
 
-- 📊 **Deterministic Scoring**: Demand, competition, feasibility, profitability
-- 🎲 **30+ Business Ideas**: Curated templates, filtered by user profile
-- 💾 **Idea Persistence**: Save and manage favorite ideas
-- 🔧 **Mock Integrations**: Designed for easy swapping with real services (LLM, ML, DB)
-- 📚 **Production Docs**: Complete architecture, API, and deployment guides embedded in repo
-- ⚡ **Fast Setup**: Ready in &lt;10 minutes with `pnpm i && pnpm dev`
+* 📊 **Deterministic Scoring**: Demand, competition, feasibility, profitability
+* 🎲 **30+ Business Ideas**: Curated templates, filtered by user profile
+* 💾 **Idea Persistence**: Save and manage favorite ideas
+* 🔧 **Mock Integrations**: Designed for easy swapping with real services (LLM, ML, DB)
+* 📚 **Production Docs**: Complete architecture, API, and deployment guides embedded in repo
+* ⚡ **Fast Setup**: Ready in \&lt;10 minutes with `pnpm i && pnpm dev`
 
 **Live Architecture Overview**:
 
@@ -29,14 +29,14 @@ Generate personalized business ideas and rank them using a deterministic scoring
 └─────────────────────────────────────┘
 ```
 
----
+***
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ (LTS)
-- pnpm 8.0+
+* Node.js 18+ (LTS)
+* pnpm 8.0+
 
 ### Install & Run (5 minutes)
 
@@ -60,6 +60,7 @@ pnpm test:e2e  # Requires dev server running
 ```
 
 **Expected Output**:
+
 ```
 > pnpm dev
   ▲ Next.js 14.0.4
@@ -67,7 +68,7 @@ pnpm test:e2e  # Requires dev server running
 ✓ Ready in 2.1s
 ```
 
----
+***
 
 ## 📋 User Flows
 
@@ -76,20 +77,20 @@ pnpm test:e2e  # Requires dev server running
 1. User fills profile: location, interests, budget, hours/week, business type, risk tolerance
 2. Click "Generate Ideas"
 3. System returns 10 ranked ideas with:
-   - Title, summary, target customer, cost range
-   - Complexity level, local viability notes
-   - Scores: demand, competition, feasibility, profitability, overall
-   - **Top 3 reasons** explaining the score
+   * Title, summary, target customer, cost range
+   * Complexity level, local viability notes
+   * Scores: demand, competition, feasibility, profitability, overall
+   * **Top 3 reasons** explaining the score
 4. User can expand to see:
-   - Steps to start, why-now signals, tags
+   * Steps to start, why-now signals, tags
 5. User can save ideas they like
 
 ### Secondary: Manage Saved Ideas
 
-- Click "Load Saved Ideas" to view all saved
-- Ideas persist in memory (or DB if configured)
+* Click "Load Saved Ideas" to view all saved
+* Ideas persist in memory (or DB if configured)
 
----
+***
 
 ## 🏗️ Architecture
 
@@ -134,7 +135,7 @@ next-business-idea-poc/
 | **Database** | Mock (SQLite ready) | No setup needed, easy upgrade |
 | **Build** | tsc + Next.js | Native TypeScript, zero config |
 
----
+***
 
 ## 💡 Key Features
 
@@ -142,21 +143,22 @@ next-business-idea-poc/
 
 All scores follow explicit rules (no ML needed for POC):
 
-- **Demand Score (0-100)**: User interest alignment + why-now signals + location
-- **Competition Score (0-100, lower = better)**: Category saturation assumptions
-- **Feasibility Score (0-100)**: Budget fit + hours available + complexity
-- **Profitability Score (0-100)**: Startup cost + category margins
-- **Overall Score**: 0.35×demand + 0.20×(100-competition) + 0.25×feasibility + 0.20×profitability
+* **Demand Score (0-100)**: User interest alignment + why-now signals + location
+* **Competition Score (0-100, lower = better)**: Category saturation assumptions
+* **Feasibility Score (0-100)**: Budget fit + hours available + complexity
+* **Profitability Score (0-100)**: Startup cost + category margins
+* **Overall Score**: 0.35×demand + 0.20×(100-competition) + 0.25×feasibility + 0.20×profitability
 
 **Rules are documented** in `docs/03-data-model.md` (Scoring section).
 
 ### 2. Idea Catalog
 
 30+ production-quality idea templates covering:
-- Service businesses (social media, bookkeeping, etc.)
-- Product businesses (dropshipping, handmade goods)
-- Digital products (online courses, SaaS tools, AI bots)
-- All localized with city-specific viability notes
+
+* Service businesses (social media, bookkeeping, etc.)
+* Product businesses (dropshipping, handmade goods)
+* Digital products (online courses, SaaS tools, AI bots)
+* All localized with city-specific viability notes
 
 See `packages/core/src/ideaCatalog.ts` for full list.
 
@@ -181,7 +183,7 @@ if (process.env.DATABASE_URL) {
 
 See [Architecture Doc](docs/01-architecture.md) for real integration examples.
 
----
+***
 
 ## 📖 Documentation
 
@@ -198,7 +200,7 @@ Complete production-grade documentation is embedded in `/docs`:
 
 **Start here**: [Architecture Doc](docs/01-architecture.md#6-real-integration-points)
 
----
+***
 
 ## 🔌 Real Integrations (How-To)
 
@@ -277,7 +279,7 @@ const repo = new PrismaRepository(prisma);
 
 **See [Architecture Doc](docs/01-architecture.md#6-real-integration-points) for detailed examples.**
 
----
+***
 
 ## 🧪 Testing
 
@@ -299,9 +301,9 @@ pnpm test -- --coverage
 
 ### Key Test Suites
 
-- `packages/core/src/__tests__/scoring.test.ts` - Scoring logic (deterministic)
-- `packages/core/src/__tests__/ideaCatalog.test.ts` - Idea filtering
-- `apps/web/__tests__/e2e/` - User flows (primary flow: generate → view → save ideas)
+* `packages/core/src/__tests__/scoring.test.ts` - Scoring logic (deterministic)
+* `packages/core/src/__tests__/ideaCatalog.test.ts` - Idea filtering
+* `apps/web/__tests__/e2e/` - User flows (primary flow: generate → view → save ideas)
 
 **Example test**:
 
@@ -316,7 +318,7 @@ it('should score ideas deterministically', () => {
 
 See [Testing Doc](docs/04-testing.md) for full strategy & examples.
 
----
+***
 
 ## 📊 API Endpoints
 
@@ -381,7 +383,7 @@ GET /api/ideas/saved
 
 **Full spec**: [API Specification Doc](docs/02-api-spec.md)
 
----
+***
 
 ## 🌍 Environment Variables
 
@@ -399,7 +401,7 @@ ML_ENDPOINT_URL=http://...    # Enable ML scoring
 
 See [.env.example](.env.example) for all options.
 
----
+***
 
 ## 📈 Performance
 
@@ -407,19 +409,19 @@ See [.env.example](.env.example) for all options.
 
 | Metric | Target | Current (Mock) |
 |--------|--------|---|
-| Idea Generation API | &lt;2s | ~300ms |
-| Scoring per Idea | &lt;100ms | ~100ms |
-| Page Load | &lt;1s | ~400ms |
-| Bundle Size | &lt;100KB | ~45KB |
+| Idea Generation API | \&lt;2s | ~300ms |
+| Scoring per Idea | \&lt;100ms | ~100ms |
+| Page Load | \&lt;1s | ~400ms |
+| Bundle Size | \&lt;100KB | ~45KB |
 
 ### Optimization
 
-- Server-side generation of ideas (no client fetching)
-- Deterministic scoring (no external API calls)
-- Lazy component loading
-- Tailwind CSS purging
+* Server-side generation of ideas (no client fetching)
+* Deterministic scoring (no external API calls)
+* Lazy component loading
+* Tailwind CSS purging
 
----
+***
 
 ## 🚢 Deployment
 
@@ -459,7 +461,7 @@ npx prisma migrate deploy
 
 **Detailed guide**: [Deployment Doc](docs/05-deployment.md)
 
----
+***
 
 ## 🤝 Contributing
 
@@ -482,28 +484,28 @@ git push origin feature/my-feature
 
 ### Code Style
 
-- TypeScript strict mode
-- ESLint + Prettier (run `pnpm format`)
-- Unit tests for business logic
-- E2E tests for user flows
+* TypeScript strict mode
+* ESLint + Prettier (run `pnpm format`)
+* Unit tests for business logic
+* E2E tests for user flows
 
----
+***
 
 ## 📝 License
 
 MIT - See LICENSE file
 
----
+***
 
 ## 🎓 Learning Resources
 
-- **TypeScript**: [Handbook](https://www.typescriptlang.org/docs/)
-- **Next.js**: [App Router Docs](https://nextjs.org/docs/app)
-- **Tailwind**: [Utility-First CSS](https://tailwindcss.com/docs)
-- **Vitest**: [Testing Guide](https://vitest.dev/)
-- **Playwright**: [E2E Testing](https://playwright.dev/)
+* **TypeScript**: [Handbook](https://www.typescriptlang.org/docs/)
+* **Next.js**: [App Router Docs](https://nextjs.org/docs/app)
+* **Tailwind**: [Utility-First CSS](https://tailwindcss.com/docs)
+* **Vitest**: [Testing Guide](https://vitest.dev/)
+* **Playwright**: [E2E Testing](https://playwright.dev/)
 
----
+***
 
 ## ❓ FAQ
 
@@ -522,23 +524,23 @@ A: `pnpm dev` in one terminal, then `pnpm test:e2e` in another. See [Testing Doc
 **Q: What's the deployment process?**
 A: Push to GitHub, connect Vercel, set env vars, done. See [Deployment Doc](docs/05-deployment.md#option-1-vercel-recommended-for-nextjs).
 
----
+***
 
 ## 📞 Support
 
-- **Docs**: See `/docs` folder for detailed guides
-- **Issues**: File GitHub issue with reproduction steps
-- **Discussions**: GitHub Discussions for architecture questions
+* **Docs**: See `/docs` folder for detailed guides
+* **Issues**: File GitHub issue with reproduction steps
+* **Discussions**: GitHub Discussions for architecture questions
 
----
+***
 
 **Made with ❤️ as a production-grade POC demonstrating Next.js + TypeScript best practices.**
 
 **Next steps after POC**:
+
 1. ✅ Verify scoring logic with real users
 2. 🚀 Integrate real LLM (OpenAI/Claude) for idea generation
 3. 📊 Add ML model for improved scoring
 4. 🗄️ Migrate to PostgreSQL for persistence
 5. 👤 Add authentication (NextAuth)
 6. 📈 Scale to production infrastructure
-

@@ -10,7 +10,7 @@ http://localhost:3000/api
 
 **Not required for POC**. Future: Add `Authorization: Bearer <token>` header.
 
----
+***
 
 ## Endpoints
 
@@ -96,12 +96,13 @@ http://localhost:3000/api
 ```
 
 **Implementation Notes**:
-- See `packages/integrations/src/interfaces.ts` for `IdeaGenerator` interface
-- Default: `MockIdeaGenerator` (deterministic, fast)
-- Replace with `OpenAIIdeaGenerator` if `OPENAI_API_KEY` env var is set
-- Response time SLA: <2 seconds
 
----
+* See `packages/integrations/src/interfaces.ts` for `IdeaGenerator` interface
+* Default: `MockIdeaGenerator` (deterministic, fast)
+* Replace with `OpenAIIdeaGenerator` if `OPENAI_API_KEY` env var is set
+* Response time SLA: \&lt;2 seconds
+
+***
 
 ### 2. Save Idea
 
@@ -141,12 +142,13 @@ http://localhost:3000/api
 ```
 
 **Implementation Notes**:
-- Calls `IdeaRepository.save(idea, score)`
-- Default: `MockIdeaRepository` (in-memory)
-- Replace with `PrismaIdeaRepository` if `DATABASE_URL` env var is set
-- Response time SLA: <500ms
 
----
+* Calls `IdeaRepository.save(idea, score)`
+* Default: `MockIdeaRepository` (in-memory)
+* Replace with `PrismaIdeaRepository` if `DATABASE_URL` env var is set
+* Response time SLA: \&lt;500ms
+
+***
 
 ### 3. Get Saved Ideas
 
@@ -183,12 +185,13 @@ http://localhost:3000/api
 ```
 
 **Implementation Notes**:
-- Calls `IdeaRepository.findAll()`
-- Default: `MockIdeaRepository.store.values()`
-- Replace with `PrismaIdeaRepository.findAll()` for real DB
-- Response time SLA: <500ms
 
----
+* Calls `IdeaRepository.findAll()`
+* Default: `MockIdeaRepository.store.values()`
+* Replace with `PrismaIdeaRepository.findAll()` for real DB
+* Response time SLA: \&lt;500ms
+
+***
 
 ## Request/Response Models
 
@@ -252,7 +255,7 @@ interface IdeaWithScore extends Idea {
 }
 ```
 
----
+***
 
 ## Error Codes
 
@@ -262,7 +265,7 @@ interface IdeaWithScore extends Idea {
 | 500 | Failed to save idea | IdeaRepository error |
 | 500 | Failed to fetch saved ideas | IdeaRepository error |
 
----
+***
 
 ## Rate Limiting
 
@@ -284,17 +287,18 @@ export async function middleware(request: NextRequest) {
 }
 ```
 
----
+***
 
 ## Monitoring
 
 Log all requests with:
-- Timestamp
-- Endpoint
-- Request body (sanitized)
-- Response status
-- Response time
-- User agent (future)
+
+* Timestamp
+* Endpoint
+* Request body (sanitized)
+* Response status
+* Response time
+* User agent (future)
 
 Example:
 
@@ -307,7 +311,7 @@ console.log({
 });
 ```
 
----
+***
 
 ## Testing Examples
 

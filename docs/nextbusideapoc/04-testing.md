@@ -4,12 +4,12 @@
 
 This document outlines the testing approach for Next Business Idea POC:
 
-- **Unit Tests**: Core business logic (scoring, catalog) - Vitest
-- **Integration Tests**: API endpoints and services - Vitest + test utils
-- **E2E Tests**: User flows in real browser - Playwright
-- **Manual Testing**: User interface and edge cases
+* **Unit Tests**: Core business logic (scoring, catalog) - Vitest
+* **Integration Tests**: API endpoints and services - Vitest + test utils
+* **E2E Tests**: User flows in real browser - Playwright
+* **Manual Testing**: User interface and edge cases
 
----
+***
 
 ## Unit Tests
 
@@ -160,7 +160,7 @@ describe('Idea Factory', () => {
 });
 ```
 
----
+***
 
 ## Integration Tests
 
@@ -262,7 +262,7 @@ describe('MockIdeaRepository', () => {
 });
 ```
 
----
+***
 
 ## E2E Tests
 
@@ -357,26 +357,26 @@ pnpm test:e2e
 pnpm test:e2e --debug
 ```
 
----
+***
 
 ## Manual Testing Checklist
 
-- [ ] Load http://localhost:3000
-- [ ] Submit form with various budget/hours/risk combinations
-- [ ] Verify 10 ideas returned in <5 seconds
-- [ ] Click "Show Details" on 3+ ideas
-- [ ] Verify scores are 0-100
-- [ ] Verify reasons are readable
-- [ ] Save 2-3 ideas
-- [ ] Click "Load Saved Ideas"
-- [ ] Verify saved ideas appear
-- [ ] Test edge cases:
-  - [ ] Zero hours available
-  - [ ] Very high budget
-  - [ ] Unusual interest combinations
-  - [ ] Different business types and risk tolerances
+* \[ ] Load http://localhost:3000
+* \[ ] Submit form with various budget/hours/risk combinations
+* \[ ] Verify 10 ideas returned in \&lt;5 seconds
+* \[ ] Click "Show Details" on 3+ ideas
+* \[ ] Verify scores are 0-100
+* \[ ] Verify reasons are readable
+* \[ ] Save 2-3 ideas
+* \[ ] Click "Load Saved Ideas"
+* \[ ] Verify saved ideas appear
+* \[ ] Test edge cases:
+  * \[ ] Zero hours available
+  * \[ ] Very high budget
+  * \[ ] Unusual interest combinations
+  * \[ ] Different business types and risk tolerances
 
----
+***
 
 ## Test Data
 
@@ -394,10 +394,11 @@ pnpm test:e2e --debug
 ```
 
 **Expected**: Ideas should have:
-- Low startup cost (<$1,000)
-- LOW or MEDIUM complexity
-- Service-focused
-- Examples: Virtual trainer, Online coach, Pet sitting
+
+* Low startup cost (<$1,000)
+* LOW or MEDIUM complexity
+* Service-focused
+* Examples: Virtual trainer, Online coach, Pet sitting
 
 ### Sample User Input (High Risk Entrepreneur)
 
@@ -413,21 +414,22 @@ pnpm test:e2e --debug
 ```
 
 **Expected**: Ideas should have:
-- Higher startup cost ($2K-5K+)
-- HIGH complexity OK
-- Digital/SaaS focused
-- Examples: AI chatbot, SaaS tool, ML service
 
----
+* Higher startup cost ($2K-5K+)
+* HIGH complexity OK
+* Digital/SaaS focused
+* Examples: AI chatbot, SaaS tool, ML service
+
+***
 
 ## Coverage Goals
 
-- **Core package**: >90% line coverage
-- **Integrations package**: >80% line coverage
-- **API routes**: >85% coverage (integration tests)
-- **Components**: Snapshot testing only (UI changes often)
+* **Core package**: >90% line coverage
+* **Integrations package**: >80% line coverage
+* **API routes**: >85% coverage (integration tests)
+* **Components**: Snapshot testing only (UI changes often)
 
----
+***
 
 ## Running All Tests
 
@@ -445,6 +447,6 @@ pnpm test:e2e
 pnpm test:all
 ```
 
----
+***
 
 See [API Specification](02-api-spec.md) for endpoint testing examples.

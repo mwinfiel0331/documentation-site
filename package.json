@@ -12,7 +12,9 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "mdx-compile-fix:dry": "node scripts/mdx-compile-fix.js",
+    "mdx-compile-fix:apply": "node scripts/mdx-compile-fix.js --apply"
   },
   "engines": {
     "node": ">=18.0"
@@ -29,6 +31,10 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "typescript": "^5.9.3"
+    "remark-parse": "^10.0.2",
+    "remark-stringify": "^10.0.3",
+    "typescript": "^5.9.3",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2"
   }
 }

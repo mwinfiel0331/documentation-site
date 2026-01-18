@@ -13,7 +13,7 @@ next-business-idea-poc/
 └── README.md                    # Main overview
 ```
 
----
+***
 
 ## 🚀 Getting Started (< 10 minutes)
 
@@ -32,7 +32,7 @@ pnpm test:e2e           # E2E tests (requires dev running)
 pnpm type-check         # TypeScript checking
 ```
 
----
+***
 
 ## 📚 Key Files to Understand
 
@@ -73,7 +73,7 @@ pnpm type-check         # TypeScript checking
 | `docs/04-testing.md` | Testing approach | Unit test examples, E2E strategies |
 | `docs/05-deployment.md` | Going to prod | Setup, deployment, monitoring, scaling |
 
----
+***
 
 ## 🎯 User Flow
 
@@ -93,29 +93,31 @@ pnpm type-check         # TypeScript checking
    - Click "Load Saved Ideas" → GET /api/ideas/saved → display saved list
 ```
 
----
+***
 
 ## 🧠 Scoring Explained
 
 ### Quick Version
 
 Each idea gets 4 dimension scores (0-100):
-- **Demand**: Does the user want this? (0-100, higher better)
-- **Competition**: How crowded is this market? (0-100, lower better)
-- **Feasibility**: Can the user execute this? (0-100, higher better)
-- **Profitability**: Will they make money? (0-100, higher better)
+
+* **Demand**: Does the user want this? (0-100, higher better)
+* **Competition**: How crowded is this market? (0-100, lower better)
+* **Feasibility**: Can the user execute this? (0-100, higher better)
+* **Profitability**: Will they make money? (0-100, higher better)
 
 **Overall Score** = 0.35×demand + 0.20×(100−competition) + 0.25×feasibility + 0.20×profitability
 
 ### Detailed Rules
 
 See `docs/03-data-model.md` "Scoring Rules" section for:
-- Demand score calculation (interest matching, why-now signals)
-- Competition score (category saturation map)
-- Feasibility score (budget alignment, time availability, complexity)
-- Profitability score (startup cost, category margins)
 
----
+* Demand score calculation (interest matching, why-now signals)
+* Competition score (category saturation map)
+* Feasibility score (budget alignment, time availability, complexity)
+* Profitability score (startup cost, category margins)
+
+***
 
 ## 🔌 Real Integrations (Upgrade Path)
 
@@ -126,6 +128,7 @@ All three core services have mock implementations. Replace with real:
 **Mock**: `MockIdeaGenerator` uses static catalog
 
 **Real Option**: OpenAI ChatGPT
+
 ```typescript
 // packages/integrations/src/real/openai-generator.ts
 export class OpenAIIdeaGenerator implements IdeaGenerator {
@@ -147,6 +150,7 @@ See `docs/01-architecture.md` section "6.1 Replace IdeaGenerator (LLM)" for full
 **Mock**: `MockScoringService` uses hardcoded rules
 
 **Real Option**: ML model endpoint (SageMaker, local FastAPI, etc.)
+
 ```typescript
 // packages/integrations/src/real/ml-scoring-service.ts
 export class MLScoringService implements ScoringService {
@@ -165,6 +169,7 @@ export class MLScoringService implements ScoringService {
 **Mock**: `MockIdeaRepository` uses in-memory Map (data lost on restart)
 
 **Real Option**: PostgreSQL via Prisma
+
 ```bash
 pnpm add @prisma/client
 npx prisma init
@@ -185,7 +190,7 @@ export class PrismaRepository implements IdeaRepository {
 
 See `docs/05-deployment.md` "Database Migrations" section for full setup.
 
----
+***
 
 ## 🧪 Testing Commands
 
@@ -209,10 +214,10 @@ pnpm test -- --coverage
 
 ### Test Files
 
-- `packages/core/src/__tests__/` - Scoring, catalog, types
-- `apps/web/src/__tests__/e2e/` - User flows
+* `packages/core/src/__tests__/` - Scoring, catalog, types
+* `apps/web/src/__tests__/e2e/` - User flows
 
----
+***
 
 ## 📊 API Endpoints (Quick Reference)
 
@@ -249,7 +254,7 @@ curl http://localhost:3000/api/ideas/saved
 
 See `docs/02-api-spec.md` for full specs.
 
----
+***
 
 ## 🌍 Environment Variables
 
@@ -264,27 +269,29 @@ DATABASE_URL=file:./dev.db    # Enable DB
 ML_ENDPOINT_URL=http://...    # Enable ML scoring
 ```
 
----
+***
 
 ## 📈 Idea Catalog
 
 30+ templates built into code at `packages/core/src/ideaCatalog.ts`.
 
 Categories:
-- **Service**: Social media, bookkeeping, pet sitting, coaching, organizing, etc.
-- **Product**: Dropshipping, candles, merchandise, handmade goods, etc.
-- **Digital**: Courses, templates, SaaS, AI bots, newsletters, YouTube, etc.
+
+* **Service**: Social media, bookkeeping, pet sitting, coaching, organizing, etc.
+* **Product**: Dropshipping, candles, merchandise, handmade goods, etc.
+* **Digital**: Courses, templates, SaaS, AI bots, newsletters, YouTube, etc.
 
 All automatically filtered by user's:
-- Business type preference (SERVICE/PRODUCT/DIGITAL)
-- Interest tags
-- Budget constraints
-- Time availability
-- Risk tolerance
+
+* Business type preference (SERVICE/PRODUCT/DIGITAL)
+* Interest tags
+* Budget constraints
+* Time availability
+* Risk tolerance
 
 Filtering happens in `filterIdeas()` → scoring applied → returned sorted.
 
----
+***
 
 ## 🚢 Deployment
 
@@ -319,7 +326,7 @@ docker run -p 3000:3000 next-business-idea
 
 See `docs/05-deployment.md` for detailed setup.
 
----
+***
 
 ## 🐛 Troubleshooting
 
@@ -330,7 +337,7 @@ See `docs/05-deployment.md` for detailed setup.
 | Build errors | `pnpm type-check` to find TS errors |
 | Tests fail | Run `pnpm test -- --reporter=verbose` for details |
 
----
+***
 
 ## 📖 Doc Navigation
 
@@ -346,25 +353,25 @@ Deploy to production               → docs/05-deployment.md
 Integrate real LLM/ML/DB           → docs/01-architecture.md (section 6)
 ```
 
----
+***
 
 ## ✅ Success Criteria
 
-- [ ] `pnpm install` completes (dependency resolution)
-- [ ] `pnpm dev` starts dev server on :3000
-- [ ] Page loads with form
-- [ ] Form submission generates 10 ideas in <5s
-- [ ] Ideas display with scores (0-100)
-- [ ] Ideas are ranked (highest overall score first)
-- [ ] Each idea shows top 3 reasons for score
-- [ ] "Show Details" expands to reveal full idea
-- [ ] "Save" button persists idea (in memory or DB)
-- [ ] "Load Saved Ideas" retrieves saved list
-- [ ] `pnpm test` passes all unit tests
-- [ ] `pnpm type-check` finds zero TypeScript errors
-- [ ] Documentation explains how to add real integrations
+* \[ ] `pnpm install` completes (dependency resolution)
+* \[ ] `pnpm dev` starts dev server on :3000
+* \[ ] Page loads with form
+* \[ ] Form submission generates 10 ideas in \&lt;5s
+* \[ ] Ideas display with scores (0-100)
+* \[ ] Ideas are ranked (highest overall score first)
+* \[ ] Each idea shows top 3 reasons for score
+* \[ ] "Show Details" expands to reveal full idea
+* \[ ] "Save" button persists idea (in memory or DB)
+* \[ ] "Load Saved Ideas" retrieves saved list
+* \[ ] `pnpm test` passes all unit tests
+* \[ ] `pnpm type-check` finds zero TypeScript errors
+* \[ ] Documentation explains how to add real integrations
 
----
+***
 
 ## 🎓 Next Steps
 
@@ -376,17 +383,16 @@ After POC validation:
 4. **Add Authentication**: Use NextAuth for user accounts (optional)
 5. **Scale**: Deploy to Vercel or self-hosted with CDN (see docs/05-deployment.md)
 
----
+***
 
 ## 📞 Questions?
 
-- **Architecture questions**: See `docs/01-architecture.md`
-- **Scoring logic**: See `docs/03-data-model.md` "Scoring Rules"
-- **Real integrations**: See `docs/01-architecture.md` section 6
-- **Deployment**: See `docs/05-deployment.md`
-- **Testing**: See `docs/04-testing.md`
+* **Architecture questions**: See `docs/01-architecture.md`
+* **Scoring logic**: See `docs/03-data-model.md` "Scoring Rules"
+* **Real integrations**: See `docs/01-architecture.md` section 6
+* **Deployment**: See `docs/05-deployment.md`
+* **Testing**: See `docs/04-testing.md`
 
----
+***
 
 **Happy building! 🚀**
-
