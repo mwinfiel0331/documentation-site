@@ -30,6 +30,12 @@ jobs:
           ref: main
           path: _source_nextbusideapoc
 
+      - name: Checkout birddogger
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/birddogger
+          ref: main
+          path: _source_birddogger
       - name: Sync docs folders
         run: |
           # Sync mynexthomepoc docs
@@ -46,9 +52,14 @@ jobs:
             rsync -a --delete _source_nextbusideapoc/docs/ docs/nextbusideapoc/
           fi
 
-           # Sync nextbusideapoc docs
+           # Sync birddogger docsd
           if [ -d "_source_birddogger/docs" ]; then
-            rm -rf docs/birddogger
+            rm -rf docs/      - name: Checkout nextbusideapoc
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/nextbusideapoc
+          ref: main
+          path: _source_nextbusideapoc
             mkdir -p docs/birddogger
             rsync -a --delete _source_birddogger/docs/ docs/birddogger/
           fi
