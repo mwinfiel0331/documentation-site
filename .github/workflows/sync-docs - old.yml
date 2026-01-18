@@ -1,4 +1,4 @@
-name: Sync project docs old
+name: Sync project docs
 
 on:
   workflow_dispatch:
@@ -32,23 +32,34 @@ jobs:
 
       - name: Sync docs folders
         run: |
-          rm -rf docs/mynexthomepoc/docs
-          mkdir -p docs/mynexthomepoc
-          rsync -a --delete _source_mynexthomepoc/docs/ docs/mynexthomepoc/docs/
+          # Sync mynexthomepoc docs
+          if [ -d "_source_mynexthomepoc/docs" ]; then
+            rm -rf docs/mynexthomepoc
+            mkdir -p docs/mynexthomepoc
+            rsync -a --delete _source_mynexthomepoc/docs/ docs/mynexthomepoc/
+          fi
           
-          rm -rf docs/nextbusideapoc/docs
-          mkdir -p docs/nextbusideapoc
-          rsync -a --delete _source_nextbusideapoc/docs/ docs/nextbusideapoc/docs/
+          # Sync nextbusideapoc docs
+          if [ -d "_source_nextbusideapoc/docs" ]; then
+            rm -rf docs/nextbusideapoc
+            mkdir -p docs/nextbusideapoc
+            rsync -a --delete _source_nextbusideapoc/docs/ docs/nextbusideapoc/
+          fi
+          
+          # Clean up source directories
+          rm -rf _source_mynexthomepoc _source_nextbusideapoc
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          if git status --porcelain | grep -q .; then
-            git add docs/mynexthomepoc/docs docs/nextbusideapoc/docs
+          
+          # Check if there are any changes in the docs directories
+          if [ -n "$(git status --porcelain docs/)" ]; then
+            git add docs/
             git commit -m "Sync docs from source repos"
             git push
+            echo "Changes committed and pushed."
           else
             echo "No changes to commit."
           fi
