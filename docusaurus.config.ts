@@ -91,6 +91,12 @@ const config: Config = {
           label: 'Bird Dogger',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'nextinvestmentSidebar',
+          position: 'left',
+          label: 'Next Investment',
+        },
+        {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right',

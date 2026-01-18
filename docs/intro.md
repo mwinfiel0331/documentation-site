@@ -2,46 +2,74 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Documentation Portal
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the comprehensive documentation portal for our proof-of-concept applications. This site contains technical documentation, architecture guides, API specifications, and deployment instructions for multiple projects.
+
+## Projects Overview
+
+This documentation portal includes the following applications:
+
+| Project | Purpose | Technology Stack | Status |
+|---------|---------|------------------|--------|
+| **My Next Home POC** | Home search and comparison tool with personalized scoring | Full-stack web application | Active |
+| **Next Business Idea POC** | AI-powered business idea generator with ranking system | Full-stack web application with AI integration | Active |
+| **Bird Dogger** | [Description pending] | [Stack pending] | In Development |
+| **Next Investment** | [Description pending] | [Stack pending] | Planned |
+
+## Documentation Structure
+
+Each project folder contains comprehensive documentation organized as follows:
+
+### My Next Home POC (`/mynexthomepoc`)
+
+A proof-of-concept application for finding and comparing homes based on user preferences with an intelligent scoring system.
+
+**Key Features:**
+- Home search by location and filters (price, beds, baths, features)
+- Personalized "Next Home Score" based on user preferences
+- Home comparison tools
+- Budget tracking and cost analysis
+
+**Documentation Includes:**
+- Requirements and functional specifications
+- System architecture
+- API specifications
+- Data models
+- Testing strategy
+- Deployment guide
+
+### Next Business Idea POC (`/nextbusideapoc`)
+
+An application that generates personalized business ideas and ranks them using a deterministic scoring model.
+
+**Key Features:**
+- Profile-based idea generation
+- Deterministic scoring with explainability
+- Business idea ranking based on user constraints
+- Mock integrations with clear upgrade paths
+
+**Documentation Includes:**
+- Requirements and user flows
+- Architecture design
+- API specifications
+- Data models and scoring algorithms
+- Testing documentation
+- Deployment instructions
+- Quick start guide
+
+### Bird Dogger (`/birddogger`)
+
+*Documentation in progress*
+
+### Next Investment (`/nextinvestment`)
+
+*Documentation pending*
 
 ## Getting Started
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+1. Navigate to the specific project documentation using the sidebar
+2. Start with the **Requirements** document to understand the project goals
+3. Review the **Architecture** for system design and technology choices
+4. Check **API Specifications** for endpoint details
+5. Use the **Quick Start** or **Deployment** guides to run the application
