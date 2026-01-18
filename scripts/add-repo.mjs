@@ -67,8 +67,9 @@ function generateCleanupLine(repoName) {
 async function addRepoToWorkflow(repoName) {
   let workflow = await readWorkflow();
   
-  // Check if repo already exists
-  if (workflow.includes(`_source_${repoName}`)) {
+  // Check if repo already exists - match exact checkout name with word boundary
+  const checkoutPattern = new RegExp(`- name: Checkout ${repoName}\\s*$`, 'm');
+  if (checkoutPattern.test(workflow)) {
     console.log(`❌ Repository "${repoName}" already exists in workflow`);
     return false;
   }

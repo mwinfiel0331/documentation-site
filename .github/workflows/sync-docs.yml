@@ -39,6 +39,13 @@ jobs:
           ref: main
           path: _source_birddogger
           token: ${{ secrets.DOCS_REPO_TOKEN }}
+      - name: Checkout mynexthome
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/mynexthome
+          ref: main
+          path: _source_mynexthome
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
       - name: Checkout dnamatches
         uses: actions/checkout@v4
         with:
@@ -78,6 +85,13 @@ jobs:
           
 
 
+
+          # Sync mynexthome docs
+          if [ -d "_source_mynexthome/docs" ]; then
+            rm -rf docs/mynexthome
+            mkdir -p docs/mynexthome
+            rsync -a --delete _source_mynexthome/docs/ docs/mynexthome/
+          fi
           # Sync dnamatches docs
           if [ -d "_source_dnamatches/docs" ]; then
             rm -rf docs/dnamatches
@@ -94,6 +108,7 @@ jobs:
           rm -rf _source_mynexthomepoc 
           rm -rf _source_nextbusideapoc 
           rm -rf _source_birddogger
+          rm -rf _source_mynexthome
           rm -rf _source_dnamatches
           rm -rf _source_nextinvestment
       - name: Setup Node
