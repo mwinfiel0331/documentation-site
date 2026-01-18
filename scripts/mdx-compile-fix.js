@@ -3,10 +3,11 @@
  * scripts/mdx-compile-fix.js
  *
  * Comprehensive MDX compatibility fixes for .md files under docs/ and blog/:
- *   1. Escape "<" followed by digits (e.g. "<2" becomes "&lt;2")
+ *   1. Escape all < characters in plain text (prevents MDX tag parsing errors)
  *   2. Convert HTML comments to JSX comments
  *   3. Fix self-closing HTML tags (e.g. <img> becomes <img />)
- *   4. Detect and warn about problematic curly braces
+ *   4. Fix relative markdown links (remove docs/ prefix)
+ *   5. Detect and warn about problematic curly braces
  *
  * Uses remark/unified for AST-based processing to avoid breaking code blocks.
  *
@@ -156,6 +157,27 @@ function detectProblematicCurlyBraces(tree, filePath) {
   return warnings;
 }
 
+function fixRelativeMarkdownLinks(tree) {
+  let changed = false;
+  
+  visit(tree, 'link', (node) => {
+    if (!node || typeof node.url !== 'string') return;
+    const original = node.url;
+    
+    // Fix links that start with "docs/" - remove that prefix
+    // Examples: 
+    //   docs/01-architecture.md -> 01-architecture.md
+    //   docs/01-architecture.md#section -> 01-architecture.md#section
+    if (original.startsWith('docs/')) {
+      node.url = original.replace(/^docs\//, '');
+      changed = true;
+      verbose(`Fixed relative link: "${original}" -> "${node.url}"`);
+    }
+  });
+  
+  return changed;
+}
+
 async function processFile(file) {
   const raw = await fs.readFile(file, ENCODING);
 
@@ -174,6 +196,7 @@ async function processFile(file) {
   hasChanges = escapeLessThanInTextNodes(tree) || hasChanges;
   hasChanges = convertHtmlCommentsToJsx(tree) || hasChanges;
   hasChanges = fixSelfClosingTags(tree) || hasChanges;
+  hasChanges = fixRelativeMarkdownLinks(tree) || hasChanges;
   
   // Detect warnings (doesn't modify tree)
   const curlyBraceWarnings = detectProblematicCurlyBraces(tree, file);

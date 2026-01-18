@@ -181,7 +181,7 @@ if (process.env.DATABASE_URL) {
 }
 ```
 
-See [Architecture Doc](docs/01-architecture.md) for real integration examples.
+See [Architecture Doc](01-architecture.md) for real integration examples.
 
 ***
 
@@ -191,14 +191,14 @@ Complete production-grade documentation is embedded in `/docs`:
 
 | File | Purpose |
 |------|---------|
-| [00-requirements.md](docs/00-requirements.md) | Functional & non-functional requirements, success criteria |
-| [01-architecture.md](docs/01-architecture.md) | System design, data flows, integration points, upgrade paths |
-| [02-api-spec.md](docs/02-api-spec.md) | REST endpoint specs, request/response models, error codes |
-| [03-data-model.md](docs/03-data-model.md) | Entity schemas, validation, scoring rules (detailed), persistence |
-| [04-testing.md](docs/04-testing.md) | Testing strategy, unit test examples, E2E test scenarios |
-| [05-deployment.md](docs/05-deployment.md) | Local dev setup, production deployment (Vercel/Railway/Docker), scaling |
+| [00-requirements.md](00-requirements.md) | Functional & non-functional requirements, success criteria |
+| [01-architecture.md](01-architecture.md) | System design, data flows, integration points, upgrade paths |
+| [02-api-spec.md](02-api-spec.md) | REST endpoint specs, request/response models, error codes |
+| [03-data-model.md](03-data-model.md) | Entity schemas, validation, scoring rules (detailed), persistence |
+| [04-testing.md](04-testing.md) | Testing strategy, unit test examples, E2E test scenarios |
+| [05-deployment.md](05-deployment.md) | Local dev setup, production deployment (Vercel/Railway/Docker), scaling |
 
-**Start here**: [Architecture Doc](docs/01-architecture.md#6-real-integration-points)
+**Start here**: [Architecture Doc](01-architecture.md#6-real-integration-points)
 
 ***
 
@@ -277,7 +277,7 @@ const prisma = new PrismaClient();
 const repo = new PrismaRepository(prisma);
 ```
 
-**See [Architecture Doc](docs/01-architecture.md#6-real-integration-points) for detailed examples.**
+**See [Architecture Doc](01-architecture.md#6-real-integration-points) for detailed examples.**
 
 ***
 
@@ -316,7 +316,7 @@ it('should score ideas deterministically', () => {
 });
 ```
 
-See [Testing Doc](docs/04-testing.md) for full strategy & examples.
+See [Testing Doc](04-testing.md) for full strategy & examples.
 
 ***
 
@@ -381,7 +381,7 @@ GET /api/ideas/saved
 {"success": true, "ideas": [{...}, ...]}
 ```
 
-**Full spec**: [API Specification Doc](docs/02-api-spec.md)
+**Full spec**: [API Specification Doc](02-api-spec.md)
 
 ***
 
@@ -459,7 +459,7 @@ npx prisma init
 npx prisma migrate deploy
 ```
 
-**Detailed guide**: [Deployment Doc](docs/05-deployment.md)
+**Detailed guide**: [Deployment Doc](05-deployment.md)
 
 ***
 
@@ -510,19 +510,19 @@ MIT - See LICENSE file
 ## ❓ FAQ
 
 **Q: Why is the scoring deterministic instead of AI-powered?**
-A: For POC stability and testability. The architecture supports swapping in real ML models. See [Architecture Doc](docs/01-architecture.md#62-replace-scoringservice-ml-model).
+A: For POC stability and testability. The architecture supports swapping in real ML models. See [Architecture Doc](01-architecture.md#62-replace-scoringservice-ml-model).
 
 **Q: How do I add real database?**
-A: Install Prisma, set `DATABASE_URL`, run migrations. See [Deployment Doc](docs/05-deployment.md#database-optional-for-production).
+A: Install Prisma, set `DATABASE_URL`, run migrations. See [Deployment Doc](05-deployment.md#database-optional-for-production).
 
 **Q: Can I integrate with OpenAI?**
-A: Yes! Set `OPENAI_API_KEY` env var and implement `OpenAIIdeaGenerator`. See [Architecture Doc](docs/01-architecture.md#61-replace-ideagenerator-llm).
+A: Yes! Set `OPENAI_API_KEY` env var and implement `OpenAIIdeaGenerator`. See [Architecture Doc](01-architecture.md#61-replace-ideagenerator-llm).
 
 **Q: How do I run E2E tests?**
-A: `pnpm dev` in one terminal, then `pnpm test:e2e` in another. See [Testing Doc](docs/04-testing.md#e2e-tests).
+A: `pnpm dev` in one terminal, then `pnpm test:e2e` in another. See [Testing Doc](04-testing.md#e2e-tests).
 
 **Q: What's the deployment process?**
-A: Push to GitHub, connect Vercel, set env vars, done. See [Deployment Doc](docs/05-deployment.md#option-1-vercel-recommended-for-nextjs).
+A: Push to GitHub, connect Vercel, set env vars, done. See [Deployment Doc](05-deployment.md#option-1-vercel-recommended-for-nextjs).
 
 ***
 
