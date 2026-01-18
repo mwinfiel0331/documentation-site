@@ -52,20 +52,16 @@ jobs:
             rsync -a --delete _source_nextbusideapoc/docs/ docs/nextbusideapoc/
           fi
 
-           # Sync birddogger docsd
+          # Sync birddogger docs
           if [ -d "_source_birddogger/docs" ]; then
-            rm -rf docs/      - name: Checkout nextbusideapoc
-        uses: actions/checkout@v4
-        with:
-          repository: mwinfiel0331/nextbusideapoc
-          ref: main
-          path: _source_nextbusideapoc
+            rm -rf docs/birddogger
             mkdir -p docs/birddogger
             rsync -a --delete _source_birddogger/docs/ docs/birddogger/
           fi
           
           # Clean up source directories
-          rm -rf _source_mynexthomepoc _source_nextbusideapoc 
+          rm -rf _source_mynexthomepoc 
+          rm -rf _source_nextbusideapoc 
           rm -rf _source_birddogger
       - name: Setup Node
         uses: actions/setup-node@v4
