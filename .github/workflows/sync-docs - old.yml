@@ -1,4 +1,4 @@
-name: Sync project docs
+name: Sync project docs old
 
 on:
   workflow_dispatch:
