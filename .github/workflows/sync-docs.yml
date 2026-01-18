@@ -39,8 +39,12 @@ jobs:
             rsync -a --delete _source_mynexthomepoc/docs/ docs/mynexthomepoc/
           fi
           
-          # Sync nextbusideapoc docs
-          if [ -d "_source_nextbusideapoc/docs" ]; then
+          # Sync nextbusideapoc docs (copy from nested folder)
+          if [ -d "_source_nextbusideapoc/docs/nextbusinessideapoc" ]; then
+            rm -rf docs/nextbusideapoc
+            mkdir -p docs/nextbusideapoc
+            rsync -a --delete _source_nextbusideapoc/docs/nextbusinessideapoc/ docs/nextbusideapoc/
+          elif [ -d "_source_nextbusideapoc/docs" ]; then
             rm -rf docs/nextbusideapoc
             mkdir -p docs/nextbusideapoc
             rsync -a --delete _source_nextbusideapoc/docs/ docs/nextbusideapoc/
