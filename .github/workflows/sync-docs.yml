@@ -105,6 +105,10 @@ jobs:
             rm -rf docs/mynexthome
             mkdir -p docs/mynexthome
             rsync -a --delete _source_mynexthome/docs/ docs/mynexthome/
+          elif [ -d "_source_mynexthome/docs" ]; then
+            rm -rf docs/mynexthome
+            mkdir -p docs/mynexthome
+            rsync -a --delete _source_mynexthome/docs/ docs/mynexthome/
           fi
           # Sync dnamatches docs
           if [ -d "_source_dnamatches/docs" ]; then
@@ -116,8 +120,9 @@ jobs:
           if [ -d "_source_nextinvestment/docs/nextinvestment" ]; then
             rm -rf docs/nextinvestment
             mkdir -p docs/nextinvestment
-            rsync -a --delete _source_nextinvestment/docs/nextinvestment/ docs/nextinvestment/
+            rsync -a --delete _source_nextinvestment/docs/ docs/nextinvestment/
           fi
+          
           # Clean up source directories
           rm -rf _source_mynexthomepoc 
           rm -rf _source_nextbusideapoc 
