@@ -39,6 +39,13 @@ jobs:
           ref: main
           path: _source_birddogger
           token: ${{ secrets.DOCS_REPO_TOKEN }}
+      - name: Checkout nextinvestment
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/nextinvestment
+          ref: main
+          path: _source_nextinvestment
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
       - name: Sync docs folders
         run: |
           # Sync mynexthomepoc docs
@@ -62,10 +69,18 @@ jobs:
             rsync -a --delete _source_birddogger/docs/ docs/birddogger/
           fi
           
+
+          # Sync nextinvestment docs
+          if [ -d "_source_nextinvestment/docs" ]; then
+            rm -rf docs/nextinvestment
+            mkdir -p docs/nextinvestment
+            rsync -a --delete _source_nextinvestment/docs/ docs/nextinvestment/
+          fi
           # Clean up source directories
           rm -rf _source_mynexthomepoc 
           rm -rf _source_nextbusideapoc 
           rm -rf _source_birddogger
+          rm -rf _source_nextinvestment
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
