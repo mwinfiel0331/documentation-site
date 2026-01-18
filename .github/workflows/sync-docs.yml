@@ -39,6 +39,13 @@ jobs:
           ref: main
           path: _source_birddogger
           token: ${{ secrets.DOCS_REPO_TOKEN }}
+      - name: Checkout modern-mama
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/modern-mama
+          ref: main
+          path: _source_modern-mama
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
       - name: Checkout phonemessagescraper
         uses: actions/checkout@v4
         with:
@@ -94,6 +101,13 @@ jobs:
 
 
 
+
+          # Sync modern-mama docs
+          if [ -d "_source_modern-mama/docs" ]; then
+            rm -rf docs/modern-mama
+            mkdir -p docs/modern-mama
+            rsync -a --delete _source_modern-mama/docs/ docs/modern-mama/
+          fi
           # Sync phonemessagescraper docs
           if [ -d "_source_phonemessagescraper/docs" ]; then
             rm -rf docs/phonemessagescraper
@@ -127,6 +141,7 @@ jobs:
           rm -rf _source_mynexthomepoc 
           rm -rf _source_nextbusideapoc 
           rm -rf _source_birddogger
+          rm -rf _source_modern-mama
           rm -rf _source_phonemessagescraper
           rm -rf _source_mynexthome
           rm -rf _source_dnamatches
