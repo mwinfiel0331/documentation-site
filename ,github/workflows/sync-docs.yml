@@ -45,10 +45,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git status --porcelain | grep -q .; then
-            git add docs/mynexthomepoc/docs docs/nextbusideapoc/docs
+          git add docs/mynexthomepoc docs/nextbusideapoc
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
             git commit -m "Sync docs from source repos"
             git push
-          else
-            echo "No changes to commit."
           fi
