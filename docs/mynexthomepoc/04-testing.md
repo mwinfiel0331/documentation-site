@@ -23,12 +23,12 @@
 
 ### Test Statistics (Target)
 
-- **Unit Tests**: 70%+ coverage of core package
-- **Integration Tests**: Critical API paths
-- **E2E Tests**: 2-3 critical user workflows
-- **Total Execution Time**: &lt; 2 minutes
+* **Unit Tests**: 70%+ coverage of core package
+* **Integration Tests**: Critical API paths
+* **E2E Tests**: 2-3 critical user workflows
+* **Total Execution Time**: \&lt; 2 minutes
 
----
+***
 
 ## Unit Tests
 
@@ -66,13 +66,14 @@ describe('Mortgage Calculation', () => {
 ```
 
 **Key tests**:
-- ✅ Affordability score boundaries (0, 100, mid-range)
-- ✅ Commute score above/below target
-- ✅ Neighborhood weights by risk tolerance
-- ✅ Property quality adjustments
-- ✅ Market momentum scoring
-- ✅ Weight normalization (sum to 1)
-- ✅ Reason generation (exactly 3 strings)
+
+* ✅ Affordability score boundaries (0, 100, mid-range)
+* ✅ Commute score above/below target
+* ✅ Neighborhood weights by risk tolerance
+* ✅ Property quality adjustments
+* ✅ Market momentum scoring
+* ✅ Weight normalization (sum to 1)
+* ✅ Reason generation (exactly 3 strings)
 
 #### Scoring Rules
 
@@ -128,7 +129,7 @@ describe('Scoring Determinism', () => {
 });
 ```
 
----
+***
 
 ## Integration Tests
 
@@ -266,7 +267,7 @@ describe('POST /api/score', () => {
 });
 ```
 
----
+***
 
 ## E2E Tests (Playwright)
 
@@ -365,23 +366,23 @@ test('should persist shortlist across page reloads', async ({ page }) => {
 });
 ```
 
----
+***
 
 ## Manual Testing Checklist
 
-- [ ] Search with various criteria (different ZIP, budget, beds, features)
-- [ ] Verify results are filtered correctly
-- [ ] Select homes and compare
-- [ ] Verify scores are displayed and make sense
-- [ ] Shortlist a home
-- [ ] Reload /shortlist page and verify persistence
-- [ ] Delete from shortlist
-- [ ] Test error cases (invalid input, missing listings)
-- [ ] Check UI on mobile (iPhone SE, iPad)
-- [ ] Test on slow 3G connection
-- [ ] Verify no console errors
+* \[ ] Search with various criteria (different ZIP, budget, beds, features)
+* \[ ] Verify results are filtered correctly
+* \[ ] Select homes and compare
+* \[ ] Verify scores are displayed and make sense
+* \[ ] Shortlist a home
+* \[ ] Reload /shortlist page and verify persistence
+* \[ ] Delete from shortlist
+* \[ ] Test error cases (invalid input, missing listings)
+* \[ ] Check UI on mobile (iPhone SE, iPad)
+* \[ ] Test on slow 3G connection
+* \[ ] Verify no console errors
 
----
+***
 
 ## Running Tests
 
@@ -418,7 +419,7 @@ cd apps/web && pnpm test:e2e
 cd apps/web && pnpm test:e2e --headed=false
 ```
 
----
+***
 
 ## Continuous Integration (GitHub Actions)
 
@@ -448,29 +449,29 @@ jobs:
       # E2E tests could be added here once Playwright is set up
 ```
 
----
+***
 
 ## Known Limitations & Future Improvements
 
 ### Current Limitations
 
-- No database integration tests (SQLite in-memory would help)
-- No visual regression testing
-- No performance benchmarks
-- E2E tests not yet implemented (Playwright setup required)
+* No database integration tests (SQLite in-memory would help)
+* No visual regression testing
+* No performance benchmarks
+* E2E tests not yet implemented (Playwright setup required)
 
 ### Future Improvements
 
-- [ ] Mock database for integration tests
-- [ ] Load testing (k6 or similar)
-- [ ] Visual regression tests (Percy or similar)
-- [ ] Accessibility tests (axe-core)
-- [ ] API contract tests (Pact)
-- [ ] Mutation testing (to validate test quality)
+* \[ ] Mock database for integration tests
+* \[ ] Load testing (k6 or similar)
+* \[ ] Visual regression tests (Percy or similar)
+* \[ ] Accessibility tests (axe-core)
+* \[ ] API contract tests (Pact)
+* \[ ] Mutation testing (to validate test quality)
 
 ### Test Maintenance
 
-- Update scoring tests if rules change
-- Add tests for new filters/features
-- Maintain mock data consistency with business rules
-- Keep integration tests in sync with API schema
+* Update scoring tests if rules change
+* Add tests for new filters/features
+* Maintain mock data consistency with business rules
+* Keep integration tests in sync with API schema

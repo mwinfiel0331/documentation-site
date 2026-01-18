@@ -43,7 +43,7 @@ Single table for POC simplicity. Stores JSON blobs to avoid complex joins.
 
 **Index**
 
-- `listingId`: Allows quick lookup by listing ID
+* `listingId`: Allows quick lookup by listing ID
 
 ## JSON Structures (In `listingJson` and `scoreJson`)
 
@@ -150,10 +150,10 @@ Contains 150+ listings across Florida markets:
 
 ### POC (Current)
 
-- No caching; all data computed on-demand
-- Search filters 150 listings in-memory (~5ms)
-- Scoring fetches mock signals deterministically
-- Suitable for &lt; 100 concurrent users
+* No caching; all data computed on-demand
+* Search filters 150 listings in-memory (~5ms)
+* Scoring fetches mock signals deterministically
+* Suitable for \&lt; 100 concurrent users
 
 ### Production
 
@@ -341,10 +341,10 @@ psql -U user -d mynexthome -c "SELECT COUNT(*) FROM ShortlistedHome;"
 
 ### Current (SQLite)
 
-- Single file, local access
-- No concurrent writes (blocking)
-- Perfect for &lt; 100 total users
-- ~5ms query time
+* Single file, local access
+* No concurrent writes (blocking)
+* Perfect for \&lt; 100 total users
+* \~5ms query time
 
 ### Scaling to Production (PostgreSQL)
 
@@ -383,10 +383,10 @@ model ShortlistedHome {
 
 **Recommended for production**:
 
-- **ShortlistedHome**: Keep indefinitely (user's own data)
-- **Scores**: Keep 90 days (historical reference)
-- **Cache**: As defined by TTLs above
-- **Logs**: Keep 30 days (audit trail)
+* **ShortlistedHome**: Keep indefinitely (user's own data)
+* **Scores**: Keep 90 days (historical reference)
+* **Cache**: As defined by TTLs above
+* **Logs**: Keep 30 days (audit trail)
 
 Implement with Prisma scheduled jobs:
 

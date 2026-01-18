@@ -395,7 +395,7 @@ pnpm test:e2e --debug
 
 **Expected**: Ideas should have:
 
-* Low startup cost (<$1,000)
+* Low startup cost (\&lt;$1,000)
 * LOW or MEDIUM complexity
 * Service-focused
 * Examples: Virtual trainer, Online coach, Pet sitting

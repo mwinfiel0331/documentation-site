@@ -42,7 +42,7 @@
 
 * **FR-4.1**: Affordability Score
   * Estimate monthly payment (mortgage + taxes + insurance + HOA)
-  * Score high if payment << budget, low if payment exceeds DTI threshold
+  * Score high if payment \&lt;\&lt; budget, low if payment exceeds DTI threshold
   * Reason: e.g., "Monthly payment fits budget comfortably" vs. "Monthly payment may stretch budget"
 
 * **FR-4.2**: Commute Score
@@ -81,9 +81,9 @@
 
 ### NFR-1: Performance
 
-* Search completes < 500ms (in-memory filtering)
-* Scoring for 4 homes completes < 1s
-* Page load < 2s on 3G connection
+* Search completes \&lt; 500ms (in-memory filtering)
+* Scoring for 4 homes completes \&lt; 1s
+* Page load \&lt; 2s on 3G connection
 
 ### NFR-2: Reliability
 

@@ -64,7 +64,14 @@ async function findMdFiles(dir) {
 
 function escapeLessThanInTextNodes(tree) {
   let changed = false;
-  const pattern = /<(?=\d)/g;
+  // Escape all < characters in text nodes that could be problematic:
+  // - < followed by digit: <2, <500
+  // - < followed by $: <$1,000
+  // - < followed by <: <<
+  // - < followed by letter or other char that could start a tag name: <Budget
+  // Pattern: < not followed by a space (to preserve "< " in comparisons if needed)
+  // Actually, safer to just escape all < in plain text since text nodes shouldn't contain HTML
+  const pattern = /</g;
 
   visit(tree, 'text', (node) => {
     if (!node || typeof node.value !== 'string') return;

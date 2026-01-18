@@ -15,7 +15,7 @@ next-business-idea-poc/
 
 ***
 
-## 🚀 Getting Started (< 10 minutes)
+## 🚀 Getting Started (\&lt; 10 minutes)
 
 ```bash
 # 1. Install

@@ -355,7 +355,7 @@ http://localhost:3000
 5. Click "Save" to persist
 6. Click "Load Saved Ideas" to retrieve
 
-**Total time: < 5 minutes**
+**Total time: \&lt; 5 minutes**
 
 ***
 

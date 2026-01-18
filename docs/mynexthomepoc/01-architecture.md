@@ -317,20 +317,21 @@ interface CommuteTimeProvider {
 
 ### Mock Adapters (packages/integrations/mock)
 
-- **MockListingsProvider**: Filters ALL_LISTINGS in-memory by criteria
-- **MockNeighborhoodSignalsProvider**: Deterministic generation from zip hash + city rules
-- **MockMarketSignalsProvider**: Deterministic generation from zip hash
-- **MockCommuteTimeProvider**: Simple distance-based estimate
+* **MockListingsProvider**: Filters ALL\_LISTINGS in-memory by criteria
+* **MockNeighborhoodSignalsProvider**: Deterministic generation from zip hash + city rules
+* **MockMarketSignalsProvider**: Deterministic generation from zip hash
+* **MockCommuteTimeProvider**: Simple distance-based estimate
 
 All deterministic → reproducible test results.
 
 ### Real Adapters (packages/integrations/real)
 
 Skeleton implementations with TODO comments:
-- **RealListingsProvider**: RESO Web API / MLS partnership
-- **RealNeighborhoodSignalsProvider**: GreatSchools, crime data APIs
-- **RealMarketSignalsProvider**: Redfin, FHFA, local MLS stats
-- **RealCommuteTimeProvider**: Google Maps / Mapbox
+
+* **RealListingsProvider**: RESO Web API / MLS partnership
+* **RealNeighborhoodSignalsProvider**: GreatSchools, crime data APIs
+* **RealMarketSignalsProvider**: Redfin, FHFA, local MLS stats
+* **RealCommuteTimeProvider**: Google Maps / Mapbox
 
 See [docs/05-deployment.md](05-deployment.md) for full integration guides.
 
@@ -410,7 +411,7 @@ Score
 Browser → Vercel Edge Functions → Next.js API Routes → Prisma → SQLite
 ```
 
-Works for &lt; 1000 users, single region.
+Works for \&lt; 1000 users, single region.
 
 ### Production (Vercel + PostgreSQL + Caching)
 
@@ -432,11 +433,13 @@ Browser → Vercel Edge
 All API responses follow consistent schema:
 
 **Success (200)**
+
 ```json
 { "data": { ... } }
 ```
 
 **Error (400/404/500)**
+
 ```json
 {
   "error": {
@@ -449,44 +452,44 @@ All API responses follow consistent schema:
 
 ## Security Considerations
 
-- ✅ Zod validation on all POST bodies
-- ✅ Address masking (privacy by default)
-- ✅ No authentication (POC; can add OAuth)
-- ✅ No secrets in code (use .env)
-- ✅ CORS headers (if API exposed publicly later)
-- ✅ Rate limiting (TODO for production)
-- ✅ SQL injection protection (Prisma uses prepared statements)
+* ✅ Zod validation on all POST bodies
+* ✅ Address masking (privacy by default)
+* ✅ No authentication (POC; can add OAuth)
+* ✅ No secrets in code (use .env)
+* ✅ CORS headers (if API exposed publicly later)
+* ✅ Rate limiting (TODO for production)
+* ✅ SQL injection protection (Prisma uses prepared statements)
 
 ## Performance Targets
 
 | Operation | Target | Notes |
 |-----------|--------|-------|
-| Search (20 results) | &lt; 500ms | In-memory filtering |
-| Score 4 homes | &lt; 1s | Parallel signal fetches |
-| Page load (3G) | &lt; 2s | Includes Tailwind CSS, React hydration |
-| List shortlist | &lt; 100ms | Direct DB query |
-| Add to shortlist | &lt; 2s | Includes scoring |
+| Search (20 results) | \&lt; 500ms | In-memory filtering |
+| Score 4 homes | \&lt; 1s | Parallel signal fetches |
+| Page load (3G) | \&lt; 2s | Includes Tailwind CSS, React hydration |
+| List shortlist | \&lt; 100ms | Direct DB query |
+| Add to shortlist | \&lt; 2s | Includes scoring |
 
 ## Testing Strategy
 
 See [docs/04-testing.md](04-testing.md) for detailed test plan, but briefly:
 
-- **Unit**: Vitest, 70%+ coverage
-  - Mortgage math
-  - Scoring rules
-  - Weight normalization
-  - Reason generation
+* **Unit**: Vitest, 70%+ coverage
+  * Mortgage math
+  * Scoring rules
+  * Weight normalization
+  * Reason generation
 
-- **Integration**: API route tests
-  - /api/search returns filtered results
-  - /api/score returns deterministic scores
+* **Integration**: API route tests
+  * /api/search returns filtered results
+  * /api/score returns deterministic scores
 
-- **E2E**: Playwright
-  - Search → compare → shortlist
-  - Delete from shortlist
-  - Page navigation
+* **E2E**: Playwright
+  * Search → compare → shortlist
+  * Delete from shortlist
+  * Page navigation
 
-- **Manual**: Visual inspection
-  - UI responsiveness (mobile/desktop)
-  - Error messages
-  - Data accuracy
+* **Manual**: Visual inspection
+  * UI responsiveness (mobile/desktop)
+  * Error messages
+  * Data accuracy
