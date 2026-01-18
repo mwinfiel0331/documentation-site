@@ -39,6 +39,13 @@ jobs:
           ref: main
           path: _source_birddogger
           token: ${{ secrets.DOCS_REPO_TOKEN }}
+      - name: Checkout jobscheduling
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/jobscheduling
+          ref: main
+          path: _source_jobscheduling
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
       - name: Checkout modern-mama
         uses: actions/checkout@v4
         with:
@@ -102,6 +109,13 @@ jobs:
 
 
 
+
+          # Sync jobscheduling docs
+          if [ -d "_source_jobscheduling/docs" ]; then
+            rm -rf docs/jobscheduling
+            mkdir -p docs/jobscheduling
+            rsync -a --delete _source_jobscheduling/docs/ docs/jobscheduling/
+          fi
           # Sync modern-mama docs
           if [ -d "_source_modern-mama/docs" ]; then
             rm -rf docs/modern-mama
@@ -141,6 +155,7 @@ jobs:
           rm -rf _source_mynexthomepoc 
           rm -rf _source_nextbusideapoc 
           rm -rf _source_birddogger
+          rm -rf _source_jobscheduling
           rm -rf _source_modern-mama
           rm -rf _source_phonemessagescraper
           rm -rf _source_mynexthome

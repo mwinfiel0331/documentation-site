@@ -150,7 +150,6 @@ async function addToSidebars(repoName) {
     }
 
     // Generate new sidebar entry
-    const sidebarKey = `${repoName}Sidebar`;
     // Quote the key if it contains hyphens or other special characters
     const quotedKey = /[^a-zA-Z0-9_$]/.test(sidebarKey) ? `'${sidebarKey}'` : sidebarKey;
     const sidebarEntry = `  // ${repoName} sidebar
