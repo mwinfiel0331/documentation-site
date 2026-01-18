@@ -92,7 +92,7 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'birdddoggerSidebar',
+          sidebarId: 'birddoggerSidebar',
           position: 'left',
           label: 'Bird Dogger',
         },
