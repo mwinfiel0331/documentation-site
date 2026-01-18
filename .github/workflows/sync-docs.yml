@@ -71,10 +71,10 @@ jobs:
           
 
           # Sync nextinvestment docs
-          if [ -d "_source_nextinvestment/docs" ]; then
+          if [ -d "_source_nextinvestment/docs/nextinvestment" ]; then
             rm -rf docs/nextinvestment
             mkdir -p docs/nextinvestment
-            rsync -a --delete _source_nextinvestment/docs/ docs/nextinvestment/
+            rsync -a --delete _source_nextinvestment/docs/nextinvestment/ docs/nextinvestment/
           fi
           # Clean up source directories
           rm -rf _source_mynexthomepoc 
