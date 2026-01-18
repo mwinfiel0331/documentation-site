@@ -17,14 +17,13 @@
  *   node scripts/mdx-compile-fix.js --no-backup  -> modifies without backups
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-const process = require('process');
-
-const { unified } = require('unified');
-const remarkParse = require('remark-parse').default || require('remark-parse');
-const remarkStringify = require('remark-stringify').default || require('remark-stringify');
-const { visit } = require('unist-util-visit');
+import fs from 'fs/promises';
+import path from 'path';
+import process from 'process';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkStringify from 'remark-stringify';
+import { visit } from 'unist-util-visit';
 
 const ROOTS = ['docs', 'blog'];
 const APPLY = process.argv.includes('--apply') || process.argv.includes('-a');
