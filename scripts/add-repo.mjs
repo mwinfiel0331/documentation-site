@@ -144,6 +144,22 @@ async function createDocsFolder(repoName) {
   try {
     await fs.mkdir(docsPath, { recursive: true });
     console.log(`✓ Created docs folder: docs/${repoName}/`);
+    
+    // Create _category_.json for sidebar label
+    const label = toTitleCase(repoName);
+    const categoryData = {
+      label: label,
+      position: 1,
+      link: {
+        type: 'generated-index',
+        description: `${label} documentation`
+      }
+    };
+    
+    const categoryPath = path.join(docsPath, '_category_.json');
+    await fs.writeFile(categoryPath, JSON.stringify(categoryData, null, 2), 'utf-8');
+    console.log(`✓ Created _category_.json with label "${label}"`);
+    
   } catch (err) {
     console.log(`⚠ Could not create docs folder: ${err.message}`);
   }
