@@ -79,11 +79,11 @@ jobs:
         run: |
           echo "Running MDX compatibility fixes..."
           
-          if [ -f scripts/mdx-compile-fix.js ]; then
-            echo "→ Running mdx-compile-fix.js"
-            node scripts/mdx-compile-fix.js --apply --no-backup
+          if [ -f scripts/mdx-compile-fix.mjs ]; then
+            echo "→ Running mdx-compile-fix.mjs"
+            node scripts/mdx-compile-fix.mjs --apply --no-backup
           else
-            echo "⚠ scripts/mdx-compile-fix.js not found; skipping"
+            echo "⚠ scripts/mdx-compile-fix.mjs not found; skipping"
           fi
 
       - name: Validate MDX build

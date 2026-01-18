@@ -2,7 +2,6 @@
   "name": "documentation-site-2",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -14,8 +13,8 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "mdx-compile-fix:dry": "node scripts/mdx-compile-fix.js",
-    "mdx-compile-fix:apply": "node scripts/mdx-compile-fix.js --apply"
+    "mdx-compile-fix:dry": "node scripts/mdx-compile-fix.mjs",
+    "mdx-compile-fix:apply": "node scripts/mdx-compile-fix.mjs --apply"
   },
   "engines": {
     "node": ">=18.0"
