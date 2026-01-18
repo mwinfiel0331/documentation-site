@@ -1,4 +1,4 @@
-# Next Business Idea - POC
+# Next Business Idea - POC test
 
 Generate personalized business ideas and rank them using a deterministic scoring model.
 

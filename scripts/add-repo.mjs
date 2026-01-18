@@ -17,7 +17,18 @@ import process from 'process';
 
 const WORKFLOW_PATH = '.github/workflows/sync-docs.yml';
 const SIDEBARS_PATH = 'sidebars.ts';
+const CONFIG_PATH = 'docusaurus.config.ts';
 const OWNER = 'mwinfiel0331';
+
+function toTitleCase(str) {
+  // Convert kebab-case, snake_case, or camelCase to Title Case
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1 $2') // camelCase to spaces
+    .replace(/[-_]/g, ' ') // kebab-case and snake_case to spaces
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
 
 function extractRepoName(input) {
   // Handle full GitHub URLs
@@ -186,6 +197,52 @@ async function addToSidebars(repoName) {
   }
 }
 
+async function addToNavbar(repoName) {
+  try {
+    let config = await fs.readFile(CONFIG_PATH, 'utf-8');
+    
+    const sidebarId = `${repoName}Sidebar`;
+    
+    // Check if navbar item already exists
+    if (config.includes(`sidebarId: '${sidebarId}'`) || config.includes(`sidebarId: "${sidebarId}"`)) {
+      console.log(`⚠ Navbar item for "${repoName}" already exists`);
+      return false;
+    }
+
+    // Generate human-readable label
+    const label = toTitleCase(repoName);
+
+    // Find the GitHub link in navbar (we'll insert before it)
+    const githubPattern = /\s*\{\s*href:\s*['"]https:\/\/github\.com/;
+    const githubMatch = config.match(githubPattern);
+    
+    if (!githubMatch) {
+      console.log('❌ Could not find GitHub link in navbar');
+      return false;
+    }
+
+    const insertIndex = config.indexOf(githubMatch[0]);
+    
+    // Generate navbar entry
+    const navbarEntry = `        {
+          type: 'docSidebar',
+          sidebarId: '${sidebarId}',
+          position: 'left',
+          label: '${label}',
+        },
+`;
+
+    config = config.slice(0, insertIndex) + navbarEntry + config.slice(insertIndex);
+
+    await fs.writeFile(CONFIG_PATH, config, 'utf-8');
+    console.log(`✓ Added navbar entry "${label}" to ${CONFIG_PATH}`);
+    return true;
+  } catch (err) {
+    console.log(`❌ Failed to update navbar: ${err.message}`);
+    return false;
+  }
+}
+
 async function main() {
   const args = process.argv.slice(2);
   
@@ -224,15 +281,17 @@ async function main() {
   // Add to sidebars
   await addToSidebars(repoName);
 
+  // Add to navbar
+  await addToNavbar(repoName);
+
   console.log('');
   console.log('━'.repeat(60));
   console.log('✅ Repository added successfully!');
   console.log('');
   console.log('Next steps:');
   console.log(`  1. Ensure ${repoName} has a /docs folder with markdown files`);
-  console.log('  2. Add navbar entry in docusaurus.config.ts if needed');
-  console.log('  3. Commit the workflow changes');
-  console.log('  4. Run the "Sync project docs" workflow in GitHub Actions');
+  console.log('  2. Commit the changes');
+  console.log('  3. Run the "Sync project docs" workflow in GitHub Actions');
   console.log('');
 }
 

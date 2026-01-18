@@ -80,6 +80,12 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'mynexthomeSidebar',
+          position: 'left',
+          label: 'My Next Home',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'nextbusideapocSidebar',
           position: 'left',
           label: 'Next Business Idea POC',
@@ -92,9 +98,21 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'dnamatchesSidebar',
+          position: 'left',
+          label: 'DNA Matches',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'nextinvestmentSidebar',
           position: 'left',
           label: 'Next Investment',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'phonemessagescraperSidebar',
+          position: 'left',
+          label: 'Phone Message Scraper',
         },
         {
           href: 'https://github.com/facebook/docusaurus',
