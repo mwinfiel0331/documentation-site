@@ -22,6 +22,7 @@ jobs:
           repository: mwinfiel0331/mynexthomepoc
           ref: main
           path: _source_mynexthomepoc
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
 
       - name: Checkout nextbusideapoc
         uses: actions/checkout@v4
@@ -29,6 +30,7 @@ jobs:
           repository: mwinfiel0331/nextbusideapoc
           ref: main
           path: _source_nextbusideapoc
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
 
       - name: Checkout birddogger
         uses: actions/checkout@v4
@@ -36,6 +38,7 @@ jobs:
           repository: mwinfiel0331/birddogger
           ref: main
           path: _source_birddogger
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
       - name: Sync docs folders
         run: |
           # Sync mynexthomepoc docs
