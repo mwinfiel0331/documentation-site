@@ -18,7 +18,7 @@ const config: Config = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -89,6 +89,12 @@ const config: Config = {
           sidebarId: 'nextbusideapocSidebar',
           position: 'left',
           label: 'Next Business Idea POC',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'birdddoggerSidebar',
+          position: 'left',
+          label: 'Bird Dogger',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
