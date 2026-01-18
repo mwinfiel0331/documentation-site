@@ -34,13 +34,12 @@ const config: Config = {
       'classic',
       {
         docs: {
-        //  sidebarPath: './sidebars.ts',
+          sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-        //  editUrl:
-        //    'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        //}
-        //,
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+        },
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -65,20 +64,14 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+   // image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Documentation Portal',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Documentation Portal Logo',
+        src: 'img/logo.png',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-        },
         {
           type: 'docSidebar',
           sidebarId: 'mynexthomepocSidebar',
@@ -97,7 +90,6 @@ const config: Config = {
           position: 'left',
           label: 'Bird Dogger',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -108,15 +100,6 @@ const config: Config = {
     footer: {
       style: 'dark',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
         {
           title: 'Community',
           items: [
@@ -137,10 +120,6 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',
