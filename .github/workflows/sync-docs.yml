@@ -39,6 +39,13 @@ jobs:
           ref: main
           path: _source_birddogger
           token: ${{ secrets.DOCS_REPO_TOKEN }}
+      - name: Checkout jobsearch
+        uses: actions/checkout@v4
+        with:
+          repository: mwinfiel0331/jobsearch
+          ref: main
+          path: _source_jobsearch
+          token: ${{ secrets.DOCS_REPO_TOKEN }}
       - name: Checkout jobscheduling
         uses: actions/checkout@v4
         with:
@@ -103,18 +110,13 @@ jobs:
             mkdir -p docs/birddogger
             rsync -a --delete _source_birddogger/docs/ docs/birddogger/
           fi
-          
 
 
-
-
-
-
-          # Sync jobscheduling docs
-          if [ -d "_source_jobscheduling/docs" ]; then
-            rm -rf docs/jobscheduling
-            mkdir -p docs/jobscheduling
-            rsync -a --delete _source_jobscheduling/docs/ docs/jobscheduling/
+          # Sync jobsearch docs
+          if [ -d "_source_jobsearch/docs" ]; then
+            rm -rf docs/jobsearch
+            mkdir -p docs/jobsearch
+            rsync -a --delete _source_jobsearch/docs/ docs/jobsearch/
           fi
           # Sync modern-mama docs
           if [ -d "_source_modern-mama/docs" ]; then
@@ -129,10 +131,10 @@ jobs:
             rsync -a --delete _source_phonemessagescraper/docs/ docs/phonemessagescraper/
           fi
           # Sync mynexthome docs
-          if [ -d "_source_mynexthome/docs" ]; then
+          if [ -d "_source_mynexthome/docs/mynexthome" ]; then
             rm -rf docs/mynexthome
             mkdir -p docs/mynexthome
-            rsync -a --delete _source_mynexthome/docs/ docs/mynexthome/
+            rsync -a --delete _source_mynexthome/docs/mynexthome/ docs/mynexthome/
           elif [ -d "_source_mynexthome/docs" ]; then
             rm -rf docs/mynexthome
             mkdir -p docs/mynexthome
@@ -155,6 +157,7 @@ jobs:
           rm -rf _source_mynexthomepoc 
           rm -rf _source_nextbusideapoc 
           rm -rf _source_birddogger
+          rm -rf _source_jobsearch
           rm -rf _source_jobscheduling
           rm -rf _source_modern-mama
           rm -rf _source_phonemessagescraper
