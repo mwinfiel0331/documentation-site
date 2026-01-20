@@ -87,6 +87,51 @@ function escapeLessThanInTextNodes(tree) {
   return changed;
 }
 
+function escapeAngleBracketsInInlineCode(tree) {
+  let changed = false;
+  const pattern = /</g;
+
+  // Visit inlineCode nodes and escape < characters
+  visit(tree, 'inlineCode', (node) => {
+    if (!node || typeof node.value !== 'string') return;
+    const original = node.value;
+    // For inline code, we need to escape angle brackets that MDX might interpret as JSX
+    // However, in inline code they should already be safe. Let's check the parent context.
+    // Actually, inline code should be fine - the issue is text in table cells
+  });
+
+  // The real issue: visit ALL text-containing nodes recursively, including in tables
+  visit(tree, (node) => {
+    // Handle any node that has a 'value' property with text
+    if (node.type === 'text' && typeof node.value === 'string') {
+      const original = node.value;
+      const updated = original.replace(pattern, '&lt;');
+      if (original !== updated) {
+        node.value = updated;
+        changed = true;
+        verbose(`Escaped < in ${node.type}: "${original.substring(0, 50)}..."`);
+      }
+    }
+    
+    // Handle tableCell specifically - recursively process its children
+    if (node.type === 'tableCell' && node.children) {
+      for (const child of node.children) {
+        if (child.type === 'text' && typeof child.value === 'string') {
+          const original = child.value;
+          const updated = original.replace(pattern, '&lt;');
+          if (original !== updated) {
+            child.value = updated;
+            changed = true;
+            verbose(`Escaped < in table cell: "${original.substring(0, 50)}..."`);
+          }
+        }
+      }
+    }
+  });
+
+  return changed;
+}
+
 function convertHtmlCommentsToJsx(tree) {
   let changed = false;
   
@@ -193,6 +238,7 @@ async function processFile(file) {
   // Apply all fixes
   let hasChanges = false;
   hasChanges = escapeLessThanInTextNodes(tree) || hasChanges;
+  hasChanges = escapeAngleBracketsInInlineCode(tree) || hasChanges;
   hasChanges = convertHtmlCommentsToJsx(tree) || hasChanges;
   hasChanges = fixSelfClosingTags(tree) || hasChanges;
   hasChanges = fixRelativeMarkdownLinks(tree) || hasChanges;
