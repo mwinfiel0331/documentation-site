@@ -113,13 +113,7 @@ const config: Config = {
           sidebarId: 'phonemessagescraperSidebar',
           position: 'left',
           label: 'Phone Message Scraper',
-        },        {
-          type: 'docSidebar',
-          sidebarId: 'jobsearchSidebar',
-          position: 'left',
-          label: 'Jobsearch',
         },
-
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
